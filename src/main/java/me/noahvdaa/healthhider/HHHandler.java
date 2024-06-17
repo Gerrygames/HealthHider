@@ -42,7 +42,7 @@ public class HHHandler extends MessageToMessageEncoder<Packet<?>> {
 
         List<SynchedEntityData.DataValue<?>> packed = new ArrayList<>(packet.packedItems());
         packed.replaceAll(dataValue -> {
-            if (dataValue.id() == DATA_HEALTH_ID.getId()) {
+            if (dataValue.id() == DATA_HEALTH_ID.id()) {
                 float health = (float) dataValue.value();
                 float shownHealth;
                 if (health <= 0.0F) {
@@ -65,7 +65,7 @@ public class HHHandler extends MessageToMessageEncoder<Packet<?>> {
             return false;
         }
 
-        Entity entity = player.level().getEntity(packet.id());
+        Entity entity = player.serverLevel().getEntity(packet.id());
 
         if (!(entity instanceof LivingEntity)) {
             // Only living entities have health
